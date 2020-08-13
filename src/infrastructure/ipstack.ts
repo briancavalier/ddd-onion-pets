@@ -6,9 +6,12 @@ export type IPStackResponse =
   | { latitude: null, longitude: null, city: null }
   | Location
 
-export const createGetLocation = (http: Http, ipstackKey: string): GetLocation<IPAddress, Location | null> => ({
-  async getLocation(ip: IPAddress): Promise<Location | null> {
-    const l = await getJson<IPStackResponse>(http, `http://api.ipstack.com/${ip}?access_key=${ipstackKey}`)
-    return l.latitude === null ? null : l
-  }
-})
+export type IPStackEnv = {
+  http: Http,
+  ipstackKey: string
+}
+
+export const getLocation = async (e: IPStackEnv, ip: IPAddress): Promise<Location | null> => {
+  const l = await getJson<IPStackResponse>(e.http, `http://api.ipstack.com/${ip}?access_key=${e.ipstackKey}`)
+  return l.latitude === null ? null : l
+}

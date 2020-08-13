@@ -15,10 +15,6 @@ export type AdoptablePets<Location, Pets> = {
   readonly pets: Pets
 }
 
-export type GetPets<Location, Pets> = {
-  getPets(l: Location): Promise<Pets>
-}
+export type GetPets<Env, Location, Pets> = (e: Env, l: Location) => Promise<Pets>
 
-export type GetLocation<UserInfo, Location> = {
-  getLocation(u: UserInfo): Promise<Location>
-}
+export type GetLocation<Env, UserInfo, Location> = (e: Env, u: UserInfo) => Promise<Location>

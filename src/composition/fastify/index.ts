@@ -4,8 +4,8 @@ import fastify from 'fastify'
 import { getPetsNear, IPAddress } from '../../application/pets'
 import { Location } from '../../domain/model'
 import { http } from '../../infrastructure/http-node'
-import { createGetLocation } from '../../infrastructure/ipstack'
-import { createGetPets, PetfinderAuth } from '../../infrastructure/petfinder'
+import { getLocation } from '../../infrastructure/ipstack'
+import { getPets, PetfinderAuth } from '../../infrastructure/petfinder'
 import { showAdoptablePets } from '../../presentation/adoptablePets'
 
 const petfinderAuth: PetfinderAuth = {
@@ -14,9 +14,14 @@ const petfinderAuth: PetfinderAuth = {
   grant_type: 'client_credentials'
 }
 
+const ipstackKey = process.env.IPSTACK_KEY ?? ''
+
 const env = {
-  ...createGetLocation(http, process.env.IPSTACK_KEY ?? ''),
-  ...createGetPets(http, petfinderAuth)
+  getLocation,
+  getPets,
+  http,
+  petfinderAuth,
+  ipstackKey,
 }
 
 type Query = { lat?: string, lon?: string, r?: string }

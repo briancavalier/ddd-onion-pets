@@ -26,13 +26,16 @@ export type PetfinderAuth = {
   client_secret: string
 }
 
-export const createGetPets = (http: Http, auth: PetfinderAuth): GetPets<Location, readonly Pet[]> => ({
-  async getPets(l: Location): Promise<readonly Pet[]> {
-    const token = await petfinderAuth(http, auth)
-    const { animals } = await petfinderPets(http, token, l)
-    return animals.map(toPet)
-  }
-})
+export type PetfinderEnv = {
+  http: Http,
+  petfinderAuth: PetfinderAuth
+}
+
+export const getPets = async (e: PetfinderEnv, l: Location): Promise<readonly Pet[]> => {
+  const token = await petfinderAuth(e.http, e.petfinderAuth)
+  const { animals } = await petfinderPets(e.http, token, l)
+  return animals.map(toPet)
+}
 
 export const toPet = ({ name, url, photos }: Animal): Pet =>
   ({ name, url, photoUrl: photos[0]?.medium })
