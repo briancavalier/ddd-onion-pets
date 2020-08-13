@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "target": "es2018",
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "lib": [
+      "es2018"
+    ],
+    "removeComments": true,
+    "strict": true,
+    "sourceMap": true,
+    "declaration": true,
+    "outDir": "module",
+    "typeRoots": [
+      "node_modules/@types"
+    ]
+  },
+  "exclude": [
+    "src/**/*.test.ts",
+    "experiments/**/*.ts",
+    "examples/**/*.ts"
+  ],
+  "include": [
+    "src"
+  ]
+}
