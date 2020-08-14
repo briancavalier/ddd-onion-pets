@@ -1,6 +1,9 @@
-import {
-  AdoptablePets, GetLocation, GetPets, IPAddress, isIPAddress, Location, Pet
-} from '../domain/model'
+import { AdoptablePets, GetLocation, GetPets, Location, Pet } from '../domain/model'
+
+export type IPAddress = string & { _type: 'IPAddress' }
+
+export const isIPAddress = (x: unknown): x is IPAddress =>
+  typeof x === 'string' && x.length > 0
 
 export type Env = GetLocation<IPAddress, Location | null> & GetPets<Location, readonly Pet[]>
 

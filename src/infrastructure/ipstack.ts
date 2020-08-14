@@ -1,4 +1,5 @@
-import { GetLocation, IPAddress, Location } from '../domain/model'
+import { IPAddress } from '../application/pets'
+import { GetLocation, Location } from '../domain/model'
 import { getJson, Http } from './http'
 
 export type IPStackResponse =

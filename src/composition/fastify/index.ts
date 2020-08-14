@@ -1,8 +1,8 @@
 import accepts from 'accepts'
 import fastify from 'fastify'
 
-import { getPetsNear } from '../../application/pets'
-import { IPAddress, Location } from '../../domain/model'
+import { getPetsNear, IPAddress } from '../../application/pets'
+import { Location } from '../../domain/model'
 import { http } from '../../infrastructure/http-node'
 import { createGetLocation } from '../../infrastructure/ipstack'
 import { createGetPets, PetfinderAuth } from '../../infrastructure/petfinder'

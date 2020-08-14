@@ -10,11 +10,6 @@ export type Location = {
   readonly radiusMiles: number
 }
 
-export type IPAddress = string & { _type: 'IPAddress' }
-
-export const isIPAddress = (x: unknown): x is IPAddress =>
-  typeof x === 'string' && x.length > 0
-
 export type AdoptablePets<Location, Pets> = {
   readonly location: Location,
   readonly pets: Pets
